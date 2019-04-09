@@ -11,9 +11,6 @@ public class UserUpdateDto {
     @NotEmpty
     private String lastName;
 
-    @NotEmpty
-    private String password;
-
     @Email
     @NotEmpty
     private String email;
@@ -39,14 +36,6 @@ public class UserUpdateDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public void setAddress(String address) {

@@ -8,6 +8,7 @@ import com.veterinary.followup.web.dto.PatientRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -59,6 +60,14 @@ public class PatientController {
         if (patient.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "patient not found");
         }
+
+        UserDetails userDetails = userService.loadUserByUsername(auth.getName());
+        boolean isAdmin = userDetails.getAuthorities().stream()
+                .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+        if (isAdmin) {
+            return patient.get();
+        }
+
         User owner = userService.findByEmail(auth.getName());
         if (!patient.get().getOwner().equals(owner)) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, "you don't authorized to do that");

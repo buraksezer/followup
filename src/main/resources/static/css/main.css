@@ -5,6 +5,6 @@
     margin: auto;
 }
 
-#patients-list{
+#owner-list, #patients-list{
     margin-top: 10px;
 }

@@ -27,11 +27,11 @@
             <a th:text="${patient.owner.getFirstName() + ' ' + patient.owner.getLastName()}"
                th:href="@{'/user/' + ${patient.owner.getId()} + '/profile'}"></a>
         </td>
-        <td th:if="${patient.owner.getEmail() == #authentication.name}">
+        <td th:if="${patient.owner.getEmail() == #authentication.name or #authorization.expression('hasRole(''ROLE_ADMIN'')')}">
             <a th:href="@{'/patient/' + ${patient.id} + '/update'}">Update</a>
             | <a th:href="@{'/patient/' + ${patient.id} + '/delete' }">Delete</a>
         </td>
-        <td th:unless="${patient.owner.getEmail() == #authentication.name}">
+        <td th:if="${patient.owner.getEmail() != #authentication.name and not #authorization.expression('hasRole(''ROLE_ADMIN'')')}">
             --
         </td>
     </tr>
