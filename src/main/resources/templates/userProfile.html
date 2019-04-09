@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="base">
+<head>
+    <title>FollowUp - User Profile</title>
+</head>
+
+<th:block layout:fragment="content">
+    <div class="container">
+        <h2>User details</h2>
+        <table class="table table-striped">
+            <tbody>
+            <tr>
+                <th>Email</th>
+                <td th:text="${user.getEmail()}"></td>
+            </tr>
+            <tr>
+                <th>First Name</th>
+                <td th:text="${user.getFirstName()}"></td>
+            </tr>
+            <tr>
+                <th>Last Name</th>
+                <td th:text="${user.getLastName()}"></td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td th:text="${user.getAddress()}"></td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td th:text="${user.getPhone()}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <span th:if="${user.getEmail() == #authentication.name}">
+            <a th:href="@{'/user/' + ${user.getId()} +'/update'}" class="btn btn-success">Edit</a>
+        </span>
+    </div>
+</th:block>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="base">
+<head>
+    <title>FollowUp - Latest Patients</title>
+</head>
+
+<th:block layout:fragment="content">
+<div class="container">
+    <h2>Latest Patient Records</h2>
+    <a class="btn btn-primary" th:href="@{/patient/register}" role="button">Register new patient</a>
+    <a class="btn btn-primary" th:href="@{/patient/search}" role="button">Search by patient name</a>
+    <a class="btn btn-primary" th:href="@{/user/search}" role="button">Search by owner name</a>
+    <span layout:insert="patients"></span>
+</div>
+</th:block>
+
+</html>

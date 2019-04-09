@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<table layout:fragment="patients" id="patients-list" class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Breed</th>
+        <th scope="col">Species</th>
+        <th scope="col">Description</th>
+        <th scope="col">Owner</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+    <tbody th:each="patient, iter : ${patients}">
+    <tr>
+        <th th:text="${iter.index+1}" scope="row"></th>
+        <td th:text="${patient.name}"></td>
+        <td th:text="${patient.age}"></td>
+        <td th:text="${patient.breed}"></td>
+        <td th:text="${patient.species}"></td>
+        <td th:text="${patient.description}"></td>
+        <td>
+            <a th:text="${patient.owner.getFirstName() + ' ' + patient.owner.getLastName()}"
+               th:href="@{'/user/' + ${patient.owner.getId()} + '/profile'}"></a>
+        </td>
+        <td th:if="${patient.owner.getEmail() == #authentication.name}">
+            <a th:href="@{'/patient/' + ${patient.id} + '/update'}">Update</a>
+            | <a th:href="@{'/patient/' + ${patient.id} + '/delete' }">Delete</a>
+        </td>
+        <td th:unless="${patient.owner.getEmail() == #authentication.name}">
+            --
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</html>

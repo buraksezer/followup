@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="base">
+<head>
+    <meta charset="UTF-8">
+    <title>Search by patient name</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="container">
+        <form th:action="@{/patient/search}" method="get">
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" id="patientName" placeholder="Search by Patient name">
+          </div>
+          <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <div th:if="${param.noResult}">
+            <br>
+            <div class="alert alert-danger">Nothing found!</div>
+        </div>
+
+        <span th:if="${patients != null}" layout:insert="patients"></span>
+    </div>
+</th:block>
+</body>
+</html>

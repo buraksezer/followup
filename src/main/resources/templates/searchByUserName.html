@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="base">
+<head>
+    <meta charset="UTF-8">
+    <title>Search by user name</title>
+</head>
+<body>
+<th:block layout:fragment="content">
+    <div class="container">
+        <form th:action="@{/user/search}" method="get">
+            <div class="form-group">
+                <input type="text" class="form-control" name="name" id="ownerName" placeholder="Search by Owner">
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+        <div th:if="${param.noResult}">
+            <br>
+            <div class="alert alert-danger">Nothing found!</div>
+        </div>
+
+        <table th:if="${owners != null}" id="owner-list" class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">#</th>
+            </tr>
+            </thead>
+            <tbody th:each="owner, iter : ${owners}">
+            <tr>
+                <th th:text="${iter.index+1}" scope="row"></th>
+                <td th:text="${owner.firstName}"></td>
+                <td th:text="${owner.lastName}"></td>
+                <td th:text="${owner.email}"></td>
+                <td>
+                    <a th:href="@{'/user/'+ ${owner.id} + '/profile'}">Details</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</th:block>
+</body>
+</html>
