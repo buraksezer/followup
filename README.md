@@ -87,9 +87,29 @@ FollowUp kullanmaya baslayabilirsiniz.
 * Var olan hasta kayitlari arasinda arama yapilabilir,
 * Kayitlar silinebilir ve guncellenebilir,
 * Kullanicilari kendi kayitlarini guncelleyebilir ve silebilir,
-* Admin haklarina sahip kullanici tum kayitlari guncelleyebilir ve silebilir,
+* Yonetici haklarina sahip kullanici tum kayitlari guncelleyebilir ve silebilir,
 * Kullanicilar kendi hesaplarini goruntuleyebilir ve duzenleyebilir,
-* Admin haklarina sahip kullanici herkesin hesabini duzenleyebilir,
+* Yonetici haklarina sahip kullanici herkesin hesabini duzenleyebilir,
 * Mevcut hasta kayitlari arasinda *isim* alani uzerinden arama yapilabilir,
 * Mevcut kullanicilar arasinda *isim* ve *soyisim* alanlari uzerinden arama yapilabilir.
+
+Uygulama OpenJDK 11 ve MySQL kullanilarak Ubuntu 18.10 uzerinde gelistirilmistir.
+
+## Yonetici haklarina sahip kullanici olusturulmasi
+
+Once MySQL'e baglanilir:
+
+`
+mysql -u root -p
+`
+
+*Not:* Kurulum adiminda kullandiginiz kullanici adi ve parolayi kullanmaniz gerekir. 
+
+Asagidaki SQL sorgusu calistirilir:
+
+`
+UPDATE role r JOIN users_roles ur ON r.id = ur.role_id JOIN user u ON u.id = ur.user_id SET r.name='ROLE_ADMIN' where u.email='myemail@address.com'';
+`
+
+Sisteme kayit olurken kullandiginiz eposta adresini kullanmayi unutmayin! 
 
