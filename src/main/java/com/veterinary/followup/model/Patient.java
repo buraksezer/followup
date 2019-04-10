@@ -18,7 +18,7 @@ public class Patient {
 
     private String name;
     private String description;
-    private Integer  age;
+    private Integer age;
     private String breed;
     private String species;
 
@@ -27,15 +27,6 @@ public class Patient {
     private User owner;
 
     public Patient() {}
-
-    public Patient(String name, String description, Integer age, String breed, String species, User owner) {
-        this.name = name;
-        this.description = description;
-        this.age = age;
-        this.breed = breed;
-        this.species = species;
-        this.owner = owner;
-    }
 
     public Long getId() { return id; }
 
@@ -85,5 +76,16 @@ public class Patient {
 
     public User getOwner() {
         return owner;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age='" + age + '\'' +
+                ", breed='" + breed + '\'' +
+                ", species=" + species +
+                '}';
     }
 }

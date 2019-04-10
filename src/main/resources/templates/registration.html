@@ -16,8 +16,9 @@
         <div class="col-md-6 col-md-offset-3">
 
             <div th:if="${param.success}">
-                <div class="alert alert-info">You've successfully registered
-                    to our awesome app!</div>
+                <div class="alert alert-info">
+                    You've successfully registered! <a href="/" th:href="@{/login}">Login now!</a>
+                </div>
             </div>
 
             <h1>Registration</h1>
@@ -81,7 +82,7 @@
 
                 <div class="form-group"
                      th:classappend="${#fields.hasErrors('address')}? 'has-error':''">
-                    <label for="firstName" class="control-label">Address</label> <input
+                    <label for="address" class="control-label">Address</label> <input
                         id="address" class="form-control" th:field="*{address}" />
                     <p class="error-message"
                        th:each="error: ${#fields.errors('address')}"
@@ -90,7 +91,7 @@
 
                 <div class="form-group"
                      th:classappend="${#fields.hasErrors('phone')}? 'has-error':''">
-                    <label for="firstName" class="control-label">Phone</label> <input
+                    <label for="phone" class="control-label">Phone</label> <input
                         id="phone" class="form-control" th:field="*{phone}" />
                     <p class="error-message"
                        th:each="error: ${#fields.errors('phone')}"

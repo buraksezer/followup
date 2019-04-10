@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByFirstNameContainingOrLastNameContaining(firstName, lastName);
     }
 
-    public User save(UserRegistrationDto registration) {
+    public void save(UserRegistrationDto registration) {
         User user = new User();
         user.setFirstName(registration.getFirstName());
         user.setLastName(registration.getLastName());
@@ -48,9 +48,8 @@ public class UserServiceImpl implements UserService {
         user.setAddress(registration.getAddress());
         user.setPhone(registration.getPhone());
         user.setPassword(passwordEncoder.encode(registration.getPassword()));
-
         user.setRoles(Arrays.asList(new Role("ROLE_USER")));
-        return userRepository.save(user);
+        userRepository.save(user);
     }
 
 
