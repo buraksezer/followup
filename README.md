@@ -66,6 +66,12 @@ Alternatif bir yol olarak, tek komut ile:
 ./mvnw spring-boot:run
 ```
 
+Testleri tek basina calistirmak icin asagidaki komutu kullanabilirsiniz:
+
+```
+./mvnw test
+```
+
 FollowUp uygulamasi ontanimli olarak 8080 portunda calisir. Eger degistirmek isterseniz `src/main/resources/application.properties` dosyasi icine:
 
 ```

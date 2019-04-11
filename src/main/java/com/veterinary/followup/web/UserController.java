@@ -74,7 +74,7 @@ public class UserController {
                                     BindingResult result, Authentication auth, Model model) throws ResponseStatusException {
         if (result.hasErrors()) {
             model.addAttribute("userId", id);
-            return "updateUserProfile";
+            return "updateUserProfile?hasErrors";
         }
 
         User user = this.getUser(id, auth);
